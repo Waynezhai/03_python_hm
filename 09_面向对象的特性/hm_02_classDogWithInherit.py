@@ -5,7 +5,7 @@
 # Author: Wayne_zhy
 # Mail: zhyzhaihuiyan@163.com
 # Created Time: 2018-11-27 20:12:17
-# Last Modified: 2018-11-27 20:26:14
+# Last Modified: 2019-01-01 17:18:25
 ################################################################# 
 
 class Animal:
@@ -34,3 +34,4 @@ miao.eat()
 
 xiaotian = XiaoTianQuan()
 xiaotian.fly()
+xiaotian.run()
