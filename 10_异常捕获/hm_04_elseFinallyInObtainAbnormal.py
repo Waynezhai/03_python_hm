@@ -5,7 +5,7 @@
 # Author: Wayne_zhy
 # Mail: zhyzhaihuiyan@163.com
 # Created Time: 2019-04-22 07:25:14
-# Last Modified: 2019-04-23 07:27:08
+# Last Modified: 2019-04-23 22:56:17
 ################################################################# 
 
 try:
@@ -23,3 +23,5 @@ else:
     print "未出现错误，尝试成功！"
 finally:
     print "无论是否出现错错误，代码都执行到了这里！"
+
+print "*" * 50
