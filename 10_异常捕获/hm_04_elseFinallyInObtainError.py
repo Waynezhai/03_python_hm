@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf8 -*-
 ################################################################# 
-# FileName: hm_03_obtainUnknownError.py
+# FileName: hm_04_elseFinallyInObtainError.py
 # Author: Wayne_zhy
 # Mail: zhyzhaihuiyan@163.com
 # Created Time: 2019-04-22 07:25:14
-# Last Modified: 2019-04-23 23:04:11
+# Last Modified: 2019-04-23 23:16:31
 ################################################################# 
 
 try:
@@ -19,3 +19,9 @@ except NameError:
 # 输入 ！ 抛出的语法错误会走以下代码
 except Exception as result:
     print "未知错误 %s" % result
+else:
+    print "未出现错误，尝试成功！"
+finally:
+    print "无论是否出现错错误，代码都执行到了这里！"
+
+print "*" * 50

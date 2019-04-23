@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf8 -*-
 ################################################################# 
-# FileName: hm_19_tryExceptType.py
+# FileName: hm_02_tryExceptType.py
 # Author: Wayne_zhy
 # Mail: zhyzhaihuiyan@163.com
 # Created Time: 2019-04-22 07:25:14
-# Last Modified: 2019-04-23 07:15:30
+# Last Modified: 2019-04-23 23:03:53
 ################################################################# 
 
 try:
