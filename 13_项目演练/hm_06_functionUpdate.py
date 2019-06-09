@@ -13,6 +13,7 @@ import pygame
 pygame.init()
 
 # 创建游戏窗口
+pygame.display.set_caption("Flying Hero")
 screen = pygame.display.set_mode((480, 700))
 
 # 1、使用pygame.image.load()加载图像的数据
@@ -35,7 +36,10 @@ pygame.display.update()
 
 
 # 游戏循环---可以增加很多游戏控制
-while True:
-    pass
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
 pygame.quit()

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 #-*- coding:utf8 -*-
 #################################################################
-# FileName: hm_09_heroFlyForever.py
+# FileName: hm_10_eventListen.py
 # Author: Wayne_zhy
 # Mail: zhyzhaihuiyan@163.com
-# Created Time: 2019-05-26 18:51:58
-# Last Modified: 2019-05-26 18:52:02
+# Created Time: 2019-06-09 12:19:12
+# Last Modified: 2019-06-09 12:19:16
 #################################################################
 
 import pygame
@@ -20,8 +20,6 @@ screen = pygame.display.set_mode((480, 700))
 # 绘制背景
 bg = pygame.image.load(r'E:\Desktop\Server Constant\images\background.png')
 screen.blit(bg, (0, 0))
-# bg = pygame.image.load("./images/background.png")
-# windows平台下，不能使用相对路径，且路径中不能出现中文
 
 # 绘制英雄的飞机
 hero = pygame.image.load(r'E:\Desktop\Server Constant\images\me1.png')
@@ -46,9 +44,13 @@ while running:
     # tick方法指定代码的执行频率，参数表示1s刷新多少次
     clock.tick(60)
 
+    # 捕获事件
+    event_list = pygame.event.get()
+    if len(event_list) > 0:
+        print event_list
+
     # 修改飞机的位置
     hero_rect.y -= 1
-    hero_rect.x += 1
 
     # 调用blit方法传图到窗口
     screen.blit(bg, (0, 0))
@@ -58,7 +60,5 @@ while running:
     pygame.display.update()
     if hero_rect.y <= -126:
         hero_rect.y = 700
-    if hero_rect.x >= 480:
-        hero_rect.x = -102
 
 pygame.quit()

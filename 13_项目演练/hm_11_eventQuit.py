@@ -1,43 +1,47 @@
 #!/usr/bin/env python
 #-*- coding:utf8 -*-
 #################################################################
-# FileName: hm_05_drawHero.py
+# FileName: hm_11_eventQuit.py
 # Author: Wayne_zhy
 # Mail: zhyzhaihuiyan@163.com
-# Created Time: 2019-05-26 17:33:12
-# Last Modified: 2019-05-26 17:46:59
+# Created Time: 2019-06-09 12:30:02
+# Last Modified: 2019-06-09 12:30:05
 #################################################################
 
 import pygame
 
+# 游戏的初始化
 pygame.init()
 
 # 创建游戏窗口
 pygame.display.set_caption("Flying Hero")
 screen = pygame.display.set_mode((480, 700))
 
-# 1、使用pygame.image.load()加载图像的数据
 bg = pygame.image.load(r'E:\Desktop\Server Constant\images\background.png')
-# bg = pygame.image.load("./images/background.png")
-# windows平台下，不能使用相对路径，且路径中不能出现中文
-
-# 2、使用游戏屏幕对象，调用blit方法，将图像绘制到指定的位置
 screen.blit(bg, (0, 0))
-
-# 3、调用pygame.display.update()方法更新整个屏幕的显示
-pygame.display.update()
-
-# 绘制英雄的飞机
 hero = pygame.image.load(r'E:\Desktop\Server Constant\images\me1.png')
 screen.blit(hero, (150, 300))
 pygame.display.update()
 
+clock = pygame.time.Clock()
+hero_rect = pygame.Rect(150, 300, 102, 106)
 
-# 游戏循环---可以增加很多游戏控制
 running = True
 while running:
+    clock.tick(60)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+            #pygame.quit()
+            #exit()
+
+    hero_rect.y -= 1
+    screen.blit(bg, (0, 0))
+    screen.blit(hero, hero_rect)
+    pygame.display.update()
+
+    if hero_rect.y <= -126:
+        hero_rect.y = 700
 
 pygame.quit()
+exit()

@@ -13,10 +13,14 @@ import pygame
 pygame.init()
 
 # 创建游戏窗口
+pygame.display.set_caption("Flying Hero")
 screen = pygame.display.set_mode((480, 700))
 
 # 游戏循环---可以增加很多游戏控制
-while True:
-    pass
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
 
 pygame.quit()

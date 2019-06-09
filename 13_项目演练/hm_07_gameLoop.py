@@ -14,17 +14,13 @@ import pygame
 pygame.init()
 
 # 创建游戏窗口
+pygame.display.set_caption("Flying Hero")
 screen = pygame.display.set_mode((480, 700))
 
-# 1、使用pygame.image.load()加载图像的数据
+#绘制背景图片
 bg = pygame.image.load(r'E:\Desktop\Server Constant\images\background.png')
 # bg = pygame.image.load("./images/background.png")
-# windows平台下，不能使用相对路径，且路径中不能出现中文
-
-# 2、使用游戏屏幕对象，调用blit方法，将图像绘制到指定的位置
 screen.blit(bg, (0, 0))
-
-# 3、调用pygame.display.update()方法更新整个屏幕的显示
 #pygame.display.update()
 
 # 绘制英雄的飞机
@@ -39,12 +35,16 @@ clock = pygame.time.Clock()
 
 # 游戏循环---可以增加很多游戏控制---意味着游戏的正式开始
 i = 0
-while True:
+running = True
+while running:
+    for event in pygame.event.get():
+        #print "==>",event
+        if event.type == pygame.QUIT:
+            running = False
+        # 可以做指定循环体内部的代码执行的频率，参数为x，即1秒刷新频率为x次
+        clock.tick(60)
+        print i
+        i += 1
 
-    # 可以做指定循环体内部的diamante执行的频率
-    clock.tick(1)
-    print i
-    i += 1
-    pass
 
 pygame.quit()
