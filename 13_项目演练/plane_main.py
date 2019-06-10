@@ -15,7 +15,7 @@ class PlaneGame(object):
     """飞机大战主游戏"""
 
     def __init__(self):
-        print "游戏初始化"
+        print "游戏初始化……"
         # 1、创建游戏窗口
 
         self.screen = pygame.display.set_mode((SCREEN_RECT.size))
@@ -24,9 +24,21 @@ class PlaneGame(object):
         self.clock = pygame.time.Clock()
         # 3、调用私有方法，创建精灵和精灵组
         self.__creat_sprites()
+        # 4、设置定时器事件---创建敌机 1s中出现一架
+        pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000)
+
 
     def __creat_sprites(self):
-        pass
+        # 创建背景精灵和精灵组
+        #bg1 = Background(r'E:\Desktop\Server Constant\images\background.png')
+        #bg2 = Background(r'E:\Desktop\Server Constant\images\background.png')
+        #bg2.rect.y = -bg2.rect.height
+        bg1 = Background()
+        bg2 = Background(True)
+        self.back_group = pygame.sprite.Group(bg1, bg2)
+
+        # 创建敌机精灵组
+        self.enemy_group = pygame.sprite.Group()
 
     def start_game(self):
         print "游戏开始……"
@@ -48,16 +60,25 @@ class PlaneGame(object):
             # 判断是否退出游戏
             if event.type == pygame.QUIT:
                 PlaneGame.__game_over()
+            elif event.type == CREATE_ENEMY_EVENT:
+                #print "敌机出场……"
+                # 创建敌机精灵
+                enemy = Enemy()
+                # 将敌机精灵添加到敌机精灵组
+                self.enemy_group.add(enemy)
 
     def __check_collide(self):
         pass
 
     def __update_sprites(self):
-        pass
+        self.back_group.update()
+        self.back_group.draw(self.screen)
+        self.enemy_group.update()
+        self.enemy_group.draw(self.screen)
 
     @staticmethod       # __game_over是一个静态方法
     def __game_over():
-        print "游戏结束"
+        print "游戏结束……"
         pygame.quit()
         exit()
 
