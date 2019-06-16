@@ -26,6 +26,7 @@ class PlaneGame(object):
         self.__creat_sprites()
         # 4、设置定时器事件---创建敌机 1s中出现一架
         pygame.time.set_timer(CREATE_ENEMY_EVENT, 1000)
+        pygame.time.set_timer(HERO_FIRE_EVENT, 500)
 
 
     def __creat_sprites(self):
@@ -39,6 +40,10 @@ class PlaneGame(object):
 
         # 创建敌机精灵组
         self.enemy_group = pygame.sprite.Group()
+
+        # 创建英雄的精灵和精灵组
+        self.hero = Hero()
+        self.hero_group = pygame.sprite.Group(self.hero)
 
     def start_game(self):
         print "游戏开始……"
@@ -66,15 +71,42 @@ class PlaneGame(object):
                 enemy = Enemy()
                 # 将敌机精灵添加到敌机精灵组
                 self.enemy_group.add(enemy)
+            #elif event.type == pygame.KEYDOWN and event.key ==pygame.K_RIGHT:
+            #    print "向右移动……"
+            elif event.type == HERO_FIRE_EVENT:
+                self.hero.fire()
+
+
+        # 使用键盘提供的方法获取键盘按键
+        keys_pressed = pygame.key.get_pressed()
+        #判断元组中对应的按键索引值
+        if keys_pressed[pygame.K_RIGHT]:
+            #print "向右移动……"
+            self.hero.speed = 2
+        elif keys_pressed[pygame.K_LEFT]:
+            self.hero.speed = -2
+        else:
+            self.hero.speed = 0
 
     def __check_collide(self):
-        pass
+        # 实现子弹摧毁敌机
+        pygame.sprite.groupcollide(self.hero.bullets, self.enemy_group, True, True)
+
+        # 敌机撞毁英雄
+        enemies = pygame.sprite.spritecollide(self.hero, self.enemy_group, True)
+        if len(enemies) > 0:
+            self.hero.kill()
+            PlaneGame.__game_over()
 
     def __update_sprites(self):
         self.back_group.update()
         self.back_group.draw(self.screen)
         self.enemy_group.update()
         self.enemy_group.draw(self.screen)
+        self.hero_group.update()
+        self.hero_group.draw(self.screen)
+        self.hero.bullets.update()
+        self.hero.bullets.draw(self.screen)
 
     @staticmethod       # __game_over是一个静态方法
     def __game_over():
@@ -83,7 +115,6 @@ class PlaneGame(object):
         exit()
 
 if __name__ == "__main__":
-
     # 创建游戏对象
     game = PlaneGame()
     # 启动游戏
