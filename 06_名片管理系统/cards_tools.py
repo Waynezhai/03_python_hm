@@ -114,7 +114,7 @@ def search_card():
                                                         card_dict["qq"],
                                                         card_dict["email"])
             # 这里的break很重要，如果没有，执行完for，else还是要执行的。
-            # TODO 增加修改和删除功能
+            # 增加修改和删除功能
             card_deal(card_dict)
             break
     else:
